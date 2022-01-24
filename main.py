@@ -2,10 +2,16 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 import time
 from PIL import Image
+from selenium.webdriver.chrome.options import Options
 
+print("the script is running")
+chrome_options = Options()
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--disable-dev-shm-usage')
 # opening the url fullscreen in chrome, having the proper chrome driver is important
-s = Service("chromedriver.exe")
-driver = webdriver.Chrome(service=s)
+s = Service("/home/dailySnip/chromedriver")
+driver = webdriver.Chrome(service=s, options=chrome_options)
 driver.maximize_window()
 driver.get("https://vps.driverweb.com/conequip-reviews.htm")
 
