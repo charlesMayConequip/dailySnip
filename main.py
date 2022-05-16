@@ -4,6 +4,7 @@ import time
 from PIL import Image
 from selenium.webdriver.chrome.options import Options
 from ftplib import FTP
+from otherVars import *
 
 print("the script is running")
 chrome_options = Options()
@@ -11,7 +12,7 @@ chrome_options.add_argument('--headless')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')
 # opening the url fullscreen in chrome, having the proper chrome driver is important
-s = Service("/home/dailySnip/chromedriver")
+s = Service(driver_path)
 driver = webdriver.Chrome(service=s, options=chrome_options)
 driver.maximize_window()
 driver.get("https://vps.driverweb.com/conequip-reviews.htm")
@@ -36,10 +37,6 @@ im = im.crop((int(x), int(y), int(width), int(height)))
 im.save('staticReview.png')
 
 # transfers files with ftp
-host = "65.175.68.36"
-user = "charliemay"
-password = "12038F&F)*30af"
-
 with FTP(host) as ftp:
     ftp.login(user=user, passwd=password)
     print(ftp.getwelcome())
